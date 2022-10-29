@@ -1,2 +1,2 @@
 # book-reviews
-Final Project AL7
+Final Project PythonAL7
