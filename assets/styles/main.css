@@ -1,0 +1,30 @@
+html, body {
+    font-family: "Lato";
+    background-color:#FBEAEB;
+    color:reds
+  }
+  
+  main > .container {
+    padding: 60px 15px 0;
+  }
+  
+  .navbar {
+    font-family: "Lato";
+    color:black;
+    background-color:  #2F3C7E;
+  }
+
+
+.btn-outline-success{
+  background-color:#FBEAEB;
+}
+
+#footer {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* Height of the footer*/
+  background-color: #2F3C7E;
+}

@@ -1,0 +1,55 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% translate "Register for an account" %}{% endblock %}
+
+{% block extrastyles %}
+<style>
+  .form-signin {
+    max-width: 600px;
+    padding: 15px;
+  }
+
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+</style>
+{% endblock extrastyles %}
+
+{% block content %}
+<div class="form-signin w-100 m-auto">
+  <h1>{% translate 'Register' %}</h1>
+  <form method="post" action="" novalidate>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">{% translate 'Submit' %}</button>
+      </div>
+  </form>
+</div>
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+The registration form. This will be an instance of some subclass
+of ``django.forms.Form``; consult `Django's forms documentation
+<http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+information on how to display this in a template.
+{% endcomment %}
