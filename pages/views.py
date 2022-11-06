@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from book.models import Book, Author, Genre
+from django.views import generic
 
 # Create your views here.
 

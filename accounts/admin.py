@@ -19,7 +19,12 @@ class CustomUserAdmin(UserAdmin):
 
     model = User
 
-    list_display = ["email", "username"]
+    list_display = [
+        "email",
+        "username",
+        "first_name",
+        "date_joined",
+    ]
 
 
 admin.site.register(User, CustomUserAdmin)
