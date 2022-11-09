@@ -5,6 +5,7 @@ from django.db import models
 from django.urls import reverse
 import uuid  # for unique book instances
 
+# from accounts import
 # Create your models here.
 
 
@@ -35,27 +36,6 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse("book-detail", args=[str(self.id)])
 
-    # #creating the bookinstance model that shows information on specific books
-
-    #     class BookInstance(models.Model):
-    #         id = models.UUIDField(primary_key = True, default=uuid.uuid4, help_text ="Unique id for the particular book")
-
-    #         book = models.ForeignKey('Book', on_delete = models.RESTRICT,null= True)
-
-    #         READING_STATUS = (
-    #             ('w', 'want to read'),
-    #             ('r','read'),
-    #             ('rc','reading')
-    #         )
-
-    #         status = models.CharField(
-    #             max_length = 1,
-    #             choices = READING_STATUS,
-    #             blank = True,
-    #             default = None,
-    #             help_text = 'Book reading status'
-    #         )
-
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -70,3 +50,6 @@ class Author(models.Model):
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
+
+
+# class BookInstance(models.Model):
