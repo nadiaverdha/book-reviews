@@ -5,6 +5,10 @@ from django.db import models
 from django.urls import reverse
 import uuid  # for unique book instances
 
+from accounts.models import User
+
+# from django.contrib.auth.models import User
+
 # from accounts import
 # Create your models here.
 
@@ -36,6 +40,9 @@ class Book(models.Model):
     def get_absolute_url(self):
         return reverse("book-detail", args=[str(self.id)])
 
+    class Meta:
+        ordering = ["title"]
+
 
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
@@ -52,4 +59,28 @@ class Author(models.Model):
         return f"{self.last_name}, {self.first_name}"
 
 
-# class BookInstance(models.Model):
+class BookInstance(models.Model):
+    book = models.ForeignKey("Book", on_delete=models.RESTRICT, null=True)
+    user = models.ForeignKey(
+        "accounts.User", on_delete=models.SET_NULL, null=True, blank=True
+    )
+
+    BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")}
+
+    status = models.CharField(
+        max_length=2,
+        choices=BOOK_STATUS,
+        blank=True,
+        default="w",
+        help_text="Book status",
+    )
+
+    class Meta:
+        permissions = (
+            ("can mark as read", "read"),
+            ("can mark as want to read", "want to read"),
+            ("can mark as currently reading", "currently reading"),
+        )
+
+    def __str__(self):
+        return f"{self.id} ({self.book.title})"

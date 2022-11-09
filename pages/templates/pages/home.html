@@ -2,10 +2,10 @@
 {%load static%}
 {% block content %}
 
-  
+ 
   <div class="image">
 
-    <img src="{% static 'styles/wallpaper.jpeg' %}" style= "width:100%" style = "height: 100%" alt="">
+    <!-- <img src="{% static 'styles/wallpaper.jpeg' %}" style= "width:100%" style = "height: 100%" alt=""> -->
   
     <h2><span>It is story time<span class='spacer'></span><br /><span class='spacer'></span>Meet your next favorite book</span></h2>
 
@@ -14,9 +14,10 @@
   <ul>
     <li><strong>Books:</strong> {{ num_books }}</li>
     <li><strong>Authors:</strong> {{ num_authors }} </li>
+   
   </ul>
 
-  
-  
+  <li>Visits: {{num_visits}}</li>
+  <li><a href="{% url 'my-books' %}">My Books</a></li> 
 {% endblock %}
 
