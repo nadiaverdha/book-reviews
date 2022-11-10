@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block content %}
+{% for bookinst in book_instance %}
+<a href="">{{ bookinst.book.title }}</a>
+{% endfor %}
+{% endblock %}
