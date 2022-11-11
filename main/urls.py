@@ -24,7 +24,7 @@ urlpatterns = [
     path("", include("pages.urls")),
     path("accounts/", include("registration.backends.default.urls")),
     path("accounts/", include("accounts.urls")),
-    path("book/", include("book.urls")),
+    # path("book/", include("book.urls")),
 ]
 
 

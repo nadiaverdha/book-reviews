@@ -2,17 +2,5 @@
 
 {% block content %}
     <h1>Borrowed books</h1>
-
-    {% if bookinstance_list %}
-    <ul>
-
-      {% for bookinst in bookinstance_list %}
-        <a href="">{{ bookinst.book.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-
-    {% else %}
-      <p>There are no books borrowed.</p>
-    {% endif %}
+    {{book_instance}}
 {% endblock %}

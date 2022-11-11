@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
 {%load static%}
+
+
+
 {% block content %}
-{% for bookinst in book_instance %}
-<a href="">{{ bookinst.book.title }}</a>
-{% endfor %}
+
+{% for bookinst in book_instance%}
+<h1>Book: {{ bookinst.book.title }}</h1>
+<p>Reader: {{ bookinst.status }}</p>
+  
+  <p>Reader: {{ bookinst.user }}</p>
+  
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form> 
+  {% endfor %}
 {% endblock %}
+
+   
+
+
+
+
+
+<!-- {% if book_instance %}
+    <ul>
+    <form action = "" method = "post">
+
+        </form>
+      {% for bookinst in book_instance %}
+        <a href=""> {{ bookinst.book.title }}</a>
+      
+        <select name="book-status" id="book-status">
+            <option value="want to read">want to read</option>
+          <option value="read">read</option>
+          <option value="reading">reading</option>
+          <input type="submit" value="Submit">
+        </select>
+    
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books borrowed.</p>
+    {% endif %}  -->

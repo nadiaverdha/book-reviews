@@ -6,11 +6,12 @@ from django.contrib import admin
 from .models import Book, Author, Genre, BookInstance
 
 
+@admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ("last_name", "first_name", "birthdate")
 
 
-admin.site.register(Author, AuthorAdmin)
+# admin.site.register(Author, AuthorAdmin)
 
 
 @admin.register(Book)
@@ -20,8 +21,9 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ("book", "status", "user")
-    list_filter = ["status"]
+    # list_display = ("id", "book", "status", "user")
+    # list_filter = ["status"]
+    pass
 
 
 @admin.register(Genre)

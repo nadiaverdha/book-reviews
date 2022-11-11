@@ -1,0 +1,36 @@
+
+
+body {
+  padding-top: 70px;
+  background-color:snow ;
+  
+}
+
+
+.navbar{
+          margin-bottom: 50px !important;
+          background-color:pink;
+        
+      }
+
+/* .navbar-nav{
+  background-color: pink;
+} */
+header > nav > ul {
+        margin: 0;
+        list-style: none outside none;
+        display: flex;
+        flex-direction: row;
+      }
+
+
+
+#footer {
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  /* Height of the footer*/
+  background-color:snow;
+}

@@ -16,13 +16,15 @@
     <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/m.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
     {% endblock styles %}
+    
     {% block extrastyles %}{% endblock extrastyles %}
-  </head>
-  <body class="d-flex flex-column h-100" id="body">
+ 
+  
+
     <header>
-      <nav class="navbar navbar-expand-md fixed-top" id = "nav">
+      <nav class="navbar navbar-expand-md fixed-top" >
         <div class="container-fluid">
             <ul class="navbar-nav me-auto justify-content-between mb-2 mb-md-0">
               <li class="nav-item">
@@ -34,7 +36,7 @@
               <li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'book_list' %}">All Books</a>
+                  <a class="nav-link" href="{% url 'book-list' %}">All Books</a>
               
     
                 
@@ -66,15 +68,15 @@
         </div>
       </nav>
     </header>
-  
     <main class="flex-shrink-0">
       <div class="container">
-        {% block content %}{% endblock content %}
+        {% block content %} {% endblock content %}
       </div>
     </main>
     <div id="footer">
       <span class="text-muted">Copyright &copy; 2022 - StoryTime</span>
     </div>
+
     {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
@@ -84,3 +86,6 @@
 
   </body>
 </html>
+
+
+

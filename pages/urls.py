@@ -7,9 +7,14 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path("mybooks", views.UserBookList.as_view(), name="my-books"),
+    path("mybooks", views.UserBookList, name="my-books"),
 ]
 
 urlpatterns += [
-    path("hh", views.mark_book, name="mark-book-status"),
+    path("findnew", views.mark_book, name="mark-book-status"),
+]
+
+
+urlpatterns += [
+    path("books", views.BookListView, name="book-list"),
 ]
