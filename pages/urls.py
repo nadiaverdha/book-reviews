@@ -11,7 +11,7 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path("findnew", views.mark_book, name="mark-book-status"),
+    path("bookstatus/", views.mark_book, name="mark-book-status"),
 ]
 
 

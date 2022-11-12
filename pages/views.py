@@ -28,8 +28,9 @@ def home(request):
     return render(request, "pages/home.html", context=context)
 
 
+@login_required
 def UserBookList(request):
-    book_instance = BookInstance.objects.all()
+    book_instance = BookInstance.objects.filter(user=request.user)
     template_name: str = "pages/bookinstancelist_user.html"
     paginate_by: int = 4
     context = {"book_instance": book_instance}
@@ -80,11 +81,26 @@ def mark_book(request):
     return render(request, "pages/markbooks.html", context)
 
 
-# def mark_book(request):
+@login_required
+def mark_book(request):
+    book_instance = Book.objects.all()
 
-#     if request.method == "POST":
-#         form = MarkBooks(request.Post)
-#     else:
-#         form = MarkBooks()
+    if request.method == "POST":
+        form = MarkBooks(request.POST)
 
-#     return render(request, "pages/markbooks.html")
+        if form.is_valid():
+
+            book_instance.status = form.cleaned_data["book_status"]
+            # book_instance.title = book_instace.title
+            book_instance.save(commit=False)
+
+        return HttpResponseRedirect(reverse("my-books"))
+
+    else:
+        form = MarkBooks(initial={"book_status": "want to read"})
+
+    context = {
+        "form": form,
+        "book_instance": book_instance,
+    }
+    return render(request, "pages/markbooks.html", context)
