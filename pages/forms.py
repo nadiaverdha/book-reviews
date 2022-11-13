@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from book.models import BookInstance
+from book.models import BookInstance, BooksUser
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -24,7 +24,14 @@ BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")
 #         return data
 
 
+# class MarkBooks(ModelForm):
+#     class Meta:
+#         model = BookInstance
+#         fiels = "__all__"
+
+
 class MarkBooks(ModelForm):
     class Meta:
         model = BookInstance
-        fields = ("status", "user")
+        fields = "__all__"
+        exclude = ("user",)

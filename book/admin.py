@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 
-from .models import Book, Author, Genre, BookInstance
+from .models import Book, Author, Genre, BookInstance, BooksUser
 
 
 @admin.register(Author)
@@ -27,4 +27,9 @@ class BookInstanceAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class AdminGenre(admin.ModelAdmin):
+    pass
+
+
+@admin.register(BooksUser)
+class AdminBooksUser(admin.ModelAdmin):
     pass

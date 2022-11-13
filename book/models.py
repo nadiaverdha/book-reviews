@@ -60,7 +60,6 @@ class Author(models.Model):
 
 
 class BookInstance(models.Model):
-
     book = models.ForeignKey("Book", on_delete=models.RESTRICT, null=True, blank=True)
     user = models.ForeignKey(
         "accounts.User", on_delete=models.RESTRICT, null=True, blank=True
@@ -68,22 +67,28 @@ class BookInstance(models.Model):
     # user = models.ForeignKey(
     #     "accounts.User", on_delete=models.CASCADE, null=True, blank=True)
 
-    BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")}
+    status = models.CharField(max_length=200)
+    # BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")}
 
-    status = models.CharField(
-        max_length=2,
-        choices=BOOK_STATUS,
-        blank=True,
-        default="w",
-        help_text="Book status",
-    )
+    # status = models.CharField(
+    #     max_length=2,
+    #     choices=BOOK_STATUS,
+    #     blank=True,
+    #     default="w",
+    #     help_text="Book status",
+    # )
 
-    class Meta:
-        permissions = (
-            ("can mark as read", "read"),
-            ("can mark as want to read", "want to read"),
-            ("can mark as currently reading", "currently reading"),
-        )
+    # class Meta:
+    #     permissions = (
+    #         ("can mark as read", "read"),
+    #         ("can mark as want to read", "want to read"),
+    #         ("can mark as currently reading", "currently reading"),
+    #     )
 
     def __str__(self):
-        return f"{self.id} ({self.book.title})"
+        return f"({self.book.title})"
+
+
+class BooksUser(models.Model):
+    title = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)

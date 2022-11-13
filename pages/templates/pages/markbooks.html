@@ -3,19 +3,14 @@
 
 
 {% block content %}
-{% for bookinst in book_instance%}
-<h3>{{ bookinst.title }}</h3>
 
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit">
-  </form> 
-  <br>
-  <br>
-  {% endfor %}
+ <h2> Form</h2>
+<form method = "post">
+  {%csrf_token%}
+  {{form}}
+  <input type="submit">
+</form>
+
 {% endblock %}
 
    
