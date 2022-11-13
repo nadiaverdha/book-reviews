@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from pages.forms import MarkBooks
+from django.views.generic.edit import FormView
 
 
 def home(request):
@@ -121,15 +122,15 @@ def BookListView(request):
 #     context = {"form": form}
 #     return render(request, "pages/markbooks.html", context)
 
-from .forms import MarkBooks
-
 
 @login_required
 def mark_book(request):
-    print(request)
+    user = request.user
+    print(user)
+
+    form = MarkBooks(request.POST)
+    print(form)
     if request.method == "POST":
-        print(request)
-        form = MarkBooks(request.POST)
         if form.is_valid():
             bookuser = form.save(commit=True)
 
@@ -139,6 +140,46 @@ def mark_book(request):
 
     context = {"form": form}
     return render(request, "pages/markbooks.html", context)
+
+
+# @login_required
+# class MarkBooksView(FormView):
+#     template_name = "pages/markbooks.html"
+#     form_class = MarkBooks
+#     success_url = reverse("my-books")
+
+#     def get_form(self, form_class):
+#         try:
+#             saved_books = BookInstance.objects.get(user=self.request.user)
+#             return form_class(instance=saved_books, **self.get_form_kwargs())
+#         except BookInstance.DoesNotExist:
+#             return form_class(**self.get_form_kwargs())
+
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         form.save()
+#         return super((MarkBooksView, self).form_valid(form))
+
+
+# @login_required
+# def mark_book(request,id):
+#     bookuser = get_object_or_404(BookInstance,pk = id)
+#     if bookuser is None:
+#         if request.method == "POST":
+#             # if BookInstance.objects.get(pk=pk) is None:
+#             postpk = request.POST.get("id", None)
+#             model, created = BookInstance.objects.get_or_create(pk=postpk)
+
+#             form = MarkBooks(request.POST, instance=model)
+#             if form.is_valid():
+#                 bookuser = form.save(commit=True)
+
+#             return HttpResponseRedirect(reverse("my-books"))
+#         else:
+#             form = MarkBooks()
+
+#     context = {"form": form}
+#     return render(request, "pages/markbooks.html", context)
 
 
 # #THIS WORKS

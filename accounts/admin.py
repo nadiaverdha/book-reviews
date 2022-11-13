@@ -24,6 +24,7 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "first_name",
         "date_joined",
+        "image",
     ]
 
 

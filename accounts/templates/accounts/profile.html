@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
-
+{%load static %}
+{% block css}
+<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+{% block css}
 {% block content %}
+<head>
+<style>
 
-hello
+</style>
+</head>
+<body>
+
+<div style="border-bottom-style: ridge;color: black;align-items: left;" >
+    <strong>Username: </strong>{{username}}
+    <br>
+    <strong>Email: </strong>{{email}}
+    <br>
+    <strong>Joined on: </strong>{{date}}
+    <br>
+    <strong>Shelf: </strong>{{no_books}}
+    <br>
+    </div>
+    </div>
+    <br>
+    <br>
+</div>
+ <div>
+   <strong>{{username}}</strong>'s shelf <br>
+  </div>
+  <div class="slideshow-container">
+    {% for book in shelf %}
+    {{book.book.title}}
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="book/bookcover/crownofmidnight.png" style="width:100%">
+      <div class="text">{{book.book.title}}</div>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+ <div>
+     You are one click away from your next favorite book: <br>
+     <a href="{% url 'mark-book-status' %}">Find new books</a>
+ </div>
+</body>
+</html>
 
 {% endblock content%}

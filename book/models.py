@@ -27,7 +27,7 @@ class Book(models.Model):
     release_date = models.DateField()
     author = models.ForeignKey("Author", on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
-    # cover = models.ImageField(upload_to="book/bookcovers", blank=True, null=True)
+    cover = models.ImageField(upload_to="book/bookcovers", blank=True, null=True)
 
     def display_genre(self):
         return ",".join(genre.name for genre in self.genre.all())
@@ -53,37 +53,36 @@ class Author(models.Model):
         ordering = ["last_name", "first_name"]
 
     def get_absolute_url(self):
-        return reverse("author-detail", args=[str(self.id)])
+        return reverse("author-detail", kwargs={"pk": str(self.id)})
 
     def __str__(self):
         return f"{self.last_name}, {self.first_name}"
 
 
 class BookInstance(models.Model):
+    id = models.AutoField(primary_key=True)
     book = models.ForeignKey("Book", on_delete=models.RESTRICT, null=True, blank=True)
     user = models.ForeignKey(
         "accounts.User", on_delete=models.RESTRICT, null=True, blank=True
     )
-    # user = models.ForeignKey(
-    #     "accounts.User", on_delete=models.CASCADE, null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now_add=True)
 
-    status = models.CharField(max_length=200)
-    # BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")}
+    BOOK_STATUS = {("r", "read"), ("w", "want to read"), ("cr", "currently reading")}
 
-    # status = models.CharField(
-    #     max_length=2,
-    #     choices=BOOK_STATUS,
-    #     blank=True,
-    #     default="w",
-    #     help_text="Book status",
-    # )
+    status = models.CharField(
+        max_length=2,
+        choices=BOOK_STATUS,
+        blank=True,
+        default="w",
+        help_text="Book status",
+    )
 
-    # class Meta:
-    #     permissions = (
-    #         ("can mark as read", "read"),
-    #         ("can mark as want to read", "want to read"),
-    #         ("can mark as currently reading", "currently reading"),
-    #     )
+    class Meta:
+        permissions = (
+            ("can mark as read", "read"),
+            ("can mark as want to read", "want to read"),
+            ("can mark as currently reading", "currently reading"),
+        )
 
     def __str__(self):
         return f"({self.book.title})"

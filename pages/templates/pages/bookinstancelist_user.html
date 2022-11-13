@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>Borrowed books</h1>
-    {{book_instance}}
-    {{form.errors}}
+    {% for bookinst in book_instance %}
+        <a href="">{{ bookinst.book.title }}</a> {{bookinst.pk}}
+        <br>
+      </li>
+      {% endfor %}
 {% endblock %}

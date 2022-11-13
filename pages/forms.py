@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from book.models import BookInstance, BooksUser
+from book.models import BookInstance
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -34,4 +34,3 @@ class MarkBooks(ModelForm):
     class Meta:
         model = BookInstance
         fields = "__all__"
-        exclude = ("user",)

@@ -3,13 +3,16 @@
 {% block content %}
 
  
-  <div class="image"> 
-
-   <!-- <img src="{% static 'styles/wallpaper.jpeg' %}" style= "width:100%" style = "height: 100%" alt="">  -->
+  <div class="image" style="align-left"> 
   
+  <!-- <img src="{% static 'styles/wallpaper.jpeg' %}" style= "width:1000" style = "height: 1000;align-self: flex-end;" alt="" >  -->
+
     <h2><span>It is story time<span class='spacer'></span><br /><span class='spacer'></span>Meet your next favorite book</span></h2>
 
   </div>
+ 
+<body>
+ 
   <p>Count of books:</p>
   {{inst}}
   <ul>
@@ -17,11 +20,9 @@
     <li><strong>Authors:</strong> {{ num_authors }} </li>
    
   </ul>
-
-  <li>Visits: {{num_visits}}</li>
-  <li><a href="{% url 'my-books' %}">My Books</a></li> 
-  <li><a href="{% url 'mark-book-status' %}">mark</a></li> 
-  <h1>form errors</h1>
-  {{form.errors}}
+</body>
+  <!-- <li>Visits: {{num_visits}}</li> -->
+  <!-- <li><a href="{% url 'my-books' %}">My Books</a></li>  -->
+  <!-- <li><a href="{% url 'mark-book-status' %}">mark</a></li>  -->
 {% endblock %}
 

@@ -2,20 +2,27 @@
 
 body {
   padding-top: 70px;
-  background-color:snow ;
+  /* background-color:#fff1e6 ; */
+  color:black;
   
 }
 
 
 .navbar{
           margin-bottom: 50px !important;
-          background-color:pink;
+          background-color: #fff1e6;
+          border-bottom-color: #d3ab9e;
+          border-bottom:solid;
+          border-top: solid;
+          boder-top-color:brown;
+          color:brown
         
-      }
+      } 
 
-/* .navbar-nav{
-  background-color: pink;
-} */
+.navbar-nav{
+  background-color: #fff1e6;
+  color:#ceb5b7 
+}
 header > nav > ul {
         margin: 0;
         list-style: none outside none;
@@ -30,7 +37,13 @@ header > nav > ul {
   padding: 10px 10px 0px 10px;
   bottom: 0;
   width: 100%;
+  color:#d3ab9e;
   text-align: center;
+  border-top: solid;
+  border-top-color: brown;
   /* Height of the footer*/
-  background-color:snow;
-}
+  background-color:#fff1e6 ;
+  color:brown;
+  border-bottom:solid;
+  border-top: solid;
+}  
