@@ -6,7 +6,7 @@
 }
 
 body {
-  background: ececec; ;
+  background: #DADED4;
   font-family: Lato, Helvetica, Arial, sans-serif;
   padding-top:150px;
   padding-bottom:50px;
@@ -24,7 +24,7 @@ a {
                           Navbar
   ======================================================*/
 #navbar {
-  background: #ececec;
+  background: #A3BCB6;
   color: rgb(13, 26, 38);
   position: fixed;
   top: 0;
@@ -51,7 +51,7 @@ a {
     } 
 
 .fa-solid{
-  background-color: #ececec;
+  background-color: #A3BCB6;
 }
 .logo {
   float: left;
@@ -151,6 +151,7 @@ a {
     padding: 10px 10px 0px 10px;
     bottom: 0;
     width: 100%;
+    background-color: #A3BCB6;
     text-align: center;
     border-bottom-color: #002B5B;
     border-top: solid;}

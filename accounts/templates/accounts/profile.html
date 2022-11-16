@@ -1,7 +1,13 @@
+
 {% extends 'base.html' %}
 {% block content %}
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+.w3-card {
+  background-color: #A3BCB6;
+}
+
+
 </style>
 </head>
 <body class="w3-theme-l5">
@@ -12,7 +18,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <!-- Left Column -->
     <div class="w3-col m3">
       <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
+      <div class="w3-card w3-round">
         <div class="w3-container">
          <h4 class="w3-center"><strong>My Profile</strong></h4>
          <hr>
@@ -25,7 +31,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       
     
       <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
+      <div class="w3-card w3-round">
         <div class="w3-container">
           <p><strong>Favorite genres</strong></p>
           <p>
@@ -41,11 +47,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Middle Column -->
 
-      <h4><strong>  My reviews </strong></h4>
-
+    <h4><strong>  My reviews </strong></h4>
+    {% if user_reviews %}
     <div class="w3-col m7">
       {% for review in user_reviews %}
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      <div class="w3-container w3-card w3-round w3-margin"><br>
         <hr>
         <h4> {{review.book}} - {{review.title}}</h4>
           <hr class="w3-clear">
@@ -55,9 +61,23 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
               <br>
           </div>
         </div>
+       
       </div>
       {% endfor %}
-      
+    {% else %}
+    <div class="w3-col m7">
+      <div class="w3-container w3-card  w3-round w3-margin"><br>
+        <hr>
+        <h4> You have posted no reviews yet!</h4>
+          <hr class="w3-clear">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+              <br>
+          </div>
+        </div>
+
+      </div>
+    {% endif %}
 
    
       
@@ -66,7 +86,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
-      <div class="w3-card w3-round w3-white w3-center">
+      <div class="w3-card w3-round  w3-center">
         <div class="w3-container">
         
           <h4><strong>New books</strong></h4>
@@ -77,7 +97,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <br>
       
       
-      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+      <div class="w3-card w3-round  w3-padding-16 w3-center">
         <p>I will put look to awards</p>
       </div>
       <br>
