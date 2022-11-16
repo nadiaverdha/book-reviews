@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import User
 from book.models import BookInstance
+from reviews.models import Reviews
 
 # Create your views here.
 
@@ -17,6 +18,7 @@ def profile(request):
     image = User.objects.values("image").filter(username=username)[0]["image"]
     no_books = BookInstance.objects.filter(user=request.user).count()
     shelf = BookInstance.objects.filter(user=request.user).all()
+    user_reviews = Reviews.objects.filter(user=request.user)
     context = {
         "username": username,
         "email": email,
@@ -25,5 +27,6 @@ def profile(request):
         "no_books": no_books,
         "shelf": shelf,
         "image": image,
+        "user_reviews": user_reviews,
     }
     return render(request, "accounts/profile.html", context=context)

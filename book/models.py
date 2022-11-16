@@ -26,7 +26,7 @@ class Book(models.Model):
     description = models.TextField()
     release_date = models.DateField()
     author = models.ForeignKey("Author", on_delete=models.SET_NULL, null=True)
-    genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
+    genre = models.ManyToManyField("Genre", help_text="Select a genre for this book")
     cover = models.ImageField(upload_to="book/bookcovers", blank=True, null=True)
 
     def display_genre(self):

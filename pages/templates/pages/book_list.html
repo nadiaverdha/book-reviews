@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1> All books</h1>
-    {{num_books}}
     {% if book_list %}
-    <ul>
+    {% for b in book_list %}
+   <div class="container">
+    <div class="row">
+      <div class=" col-md-8 card mb-4 right">
+        <div class="card-body">
+          <h6>{% block title %} <a href="">{{ b.title }}</a>{% endblock title %}</h6>
+          <p class=" text-muted">{{ b.author }} | {{ b.release_date }}</p>
+          {% if b.cover %}
+          <p class = "ph"><img src = "{{b.cover}}" /></p>
+          <p>{{b.description}}</p>
+          {% else %}
+          <h5>no image</h5>
+          {%endif %}
+        </div>
+        {%endfor%}
+  {% else %}
 
-      {% for bookinst in book_list %}
-        <a href="">{{ bookinst.title }}</a> {{bookinst.pk}}
-        <br>
-      </li>
-      {% endfor %}
-    </ul>
+  <p>Oh no! We couldn't find this book!</p>
+  <p> Check out our collection!</p>
 
-    {% else %}
-      <p>No books yet</p>
-    {% endif %}
+   {% endif %}
+  
+      
+      
 {% endblock %}
+
+

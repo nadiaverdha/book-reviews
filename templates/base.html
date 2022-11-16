@@ -17,76 +17,60 @@
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     {% endblock styles %}
     
     {% block extrastyles %}{% endblock extrastyles %}
  
   
-
-    <header>
-      <nav class="navbar navbar-expand-md fixed-top" >
-        <div class="container-fluid">
-            <ul class="navbar-nav me-auto justify-content-between mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Story Time</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-              
-              <li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'book-list' %}">All Books</a>
-              
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <nav id="navbar" class="">
+      <div class="nav-wrapper">
     
-                
-                <li>
-                  
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="fa-solid fa-magnifying-glass" type="submit"></button>
-                </form>
-              </ul>
-            <ul class="navbar-nav">
-              {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'profile' %}">{% translate 'Profile' %}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'auth_logout' %}">{% translate 'Sign out' %}</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'auth_login' %}">{% translate 'Sign In' %}</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'registration_register' %}">{% translate 'Register' %}</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
+        <div class="logo">
+      
+          <a href="{% url 'home' %}"></i> Story Time</a> <i class="fa-solid fa-book-open"></i>
         </div>
-      </nav>
-    </header>
-    <main class="flex-shrink-0">
-      <div class="container">
-        {% block content %} {% endblock content %}
+        
+        <ul id="menu">
+          <li><form action = "{%url 'book-list' %}"  class="d-flex" role="search" method = "get"> 
+            <input name = "q" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="fa-solid fa-magnifying-glass" type="submit" value="{{request.GET.title}}"></button>
+          </form></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="">About</a></li>
+     <li><a href="{% url 'profile' %}">Profile</a></li>
+     <li><a href="{% url 'auth_logout' %}">Log Out</a></li>
+     {% else %}
+     <li><a href="{% url 'auth_login' %}">Log In</a></li>
+     <li><a href="{% url 'registration_register' %}">Register</a></li>
+     {% endif %}
+
+        </ul>
       </div>
-    </main>
-    <div id="footer">
-      <span class="text-muted">Copyright &copy; 2022 - StoryTime</span>
-    </div>
+    </nav>
+    
+    
 
+   
+    {% block content %} {% endblock content %}
+      </div>
 
+    <div class = "contain" id="footer">
+      <span class="text-muted">Copyright &copy; 2022 - StoryTime <i class="fa-solid fa-book-open"></i></span>
+    </div> 
 
 
 
     
-    {% block scripts %}
+ {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     {% endblock scripts %}
-    {% block extrascripts %}{% endblock extrascripts %}
+    {% block extrascripts %}{% endblock extrascripts %}  
 
 
   </body>

@@ -1,50 +1,99 @@
 {% extends 'base.html' %}
-{%load static %}
-{% block css}
-<link rel="stylesheet" href="{% static 'styles/profile.css' %}">
-{% block css}
 {% block content %}
-<head>
 <style>
-
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 </style>
 </head>
-<body>
+<body class="w3-theme-l5">
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:0px">    
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center"><strong>My Profile</strong></h4>
+         <hr>
+         <p><i class="fa-solid fa-user"></i> {{username}}</p>
+         <p><i class="fa-solid fa-calendar"></i> {{date}}</p>
+         <p><i class="fa-solid fa-book"></i></i> {{no_books}}</p>
+        </div>
+      </div>
+      <br>
+      
+    
+      <!-- Interests --> 
+      <div class="w3-card w3-round w3-white w3-hide-small">
+        <div class="w3-container">
+          <p><strong>Favorite genres</strong></p>
+          <p>
+              here gonna put genres they read
+          </p>
+        </div>
+      </div>
+      <br>
+    
+    
+    <!-- End Left Column -->
+    </div>
+    
+    <!-- Middle Column -->
 
-<div style="border-bottom-style: ridge;color: black;align-items: left;" >
-    <strong>Username: </strong>{{username}}
-    <br>
-    <strong>Email: </strong>{{email}}
-    <br>
-    <strong>Joined on: </strong>{{date}}
-    <br>
-    <strong>Shelf: </strong>{{no_books}}
-    <br>
+      <h4><strong>  My reviews </strong></h4>
+
+    <div class="w3-col m7">
+      {% for review in user_reviews %}
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <hr>
+        <h4> {{review.book}} - {{review.title}}</h4>
+          <hr class="w3-clear">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+              {{review.content}}
+              <br>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+
+   
+      
+    <!-- End Middle Column -->
     </div>
+    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+        
+          <h4><strong>New books</strong></h4>
+          <a href="{% url 'mark-book-status' %}">Find more books</a>
+  
+        </div>
+      </div>
+      <br>
+      
+      
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>I will put look to awards</p>
+      </div>
+      <br>
+      
+      
+    <!-- End Right Column -->
     </div>
-    <br>
-    <br>
+    
+  <!-- End Grid -->
+  </div>
+  
+<!-- End Page Container -->
 </div>
- <div>
-   <strong>{{username}}</strong>'s shelf <br>
-  </div>
-  <div class="slideshow-container">
-    {% for book in shelf %}
-    {{book.book.title}}
-    <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
-      <img src="book/bookcover/crownofmidnight.png" style="width:100%">
-      <div class="text">{{book.book.title}}</div>
-    </div>
-    {% endfor %}
-  </div>
-  </div>
- <div>
-     You are one click away from your next favorite book: <br>
-     <a href="{% url 'mark-book-status' %}">Find new books</a>
- </div>
-</body>
-</html>
+<br>
 
-{% endblock content%}
+
+</body>
+</html> 
+{% endblock %}

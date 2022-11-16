@@ -9,10 +9,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from pages.forms import MarkBooks
 from django.views.generic.edit import FormView
+from django.views.generic import TemplateView, ListView
 
 
 def home(request):
-
+    book_list = Book.objects.all()
     num_books = Book.objects.all().count()
     inst = BookInstance.objects.all()
     books = Book.objects.all()
@@ -24,6 +25,7 @@ def home(request):
         "num_books": num_books,
         "num_authors": num_authors,
         "num_visits": num_visits,
+        "book_list": book_list,
     }
 
     return render(request, "pages/home.html", context=context)
@@ -39,97 +41,30 @@ def UserBookList(request):
     return render(request, "pages/bookinstancelist_user.html", context=context)
 
 
-def BookListView(request):
-    # model = Book
-    # context_object_name = "book_list"
-    num_books = Book.objects.all().count()
-    book_list = Book.objects.all()
-    context = {"book_list": book_list, "num_books": num_books}
-
-    return render(request, "pages/book_list.html", context=context)
+def book_detail(request, book_title):
+    book = Book.objects.filter(title__icontains=book_title)
+    context = {"book": book}
+    return render(request, "book-detail", context)
 
 
-# @login_required
-# def mark_book(request):
-#     # book_instance = BookInstance
-#     book_instance = BookInstance.objects.all()
-#     # for book in books:
-#     # If this is a POST request then process the Form data
-#     for b in book_instance:
-#         if request.method == "POST":
+class BookListView(ListView):
+    model = Book
+    template_name = "pages/book_list.html"
 
-#             # Create a form instance and populate it with data from the request (binding):
-#             form = MarkBooks(request.POST)
+    def get_queryset(self):
 
-#             if form.is_valid():
-#                 # book_instance.book.title = book.title
-#                 b.user = request.user
-#                 b.status = form.cleaned_data["status"]
-#                 b.save()
-
-#             # redirect to a new URL:
-#             return HttpResponseRedirect(reverse("my-books"))
-
-#     else:
-#         proposed_status = "want to read"
-#         form = MarkBooks(initial={"status": proposed_status})
-
-#     context = {
-#         "form": form,
-#         "b": book_instance,
-#     }
-
-#     return render(request, "pages/markbooks.html", context)
-
-
-# @login_required
-# def mark_book(request, pk):
-#     book_instance = Book.objects.get(pk=pk)
-
-#     if request.method == "POST":
-#         form = MarkBooks(request.POST)
-
-#         if form.is_valid():
-
-#             book_instance.status = form.cleaned_data["book_status"]
-#             # book_instance.title = book_instace.title
-#             book_instance.save(commit=False)
-
-#         return HttpResponseRedirect(reverse("my-books"))
-
-#     else:
-#         form = MarkBooks(initial={"book_status": "want to read"})
-
-#     context = {
-#         "form": form,
-#         "book_instance": book_instance,
-#     }
-#     return render(request, "pages/markbooks.html", context)
-
-
-# @login_required
-# def mark_books(request):
-#     user = request.user
-#     form = MarkBooks()
-
-#     if request.method == "POST":
-#         print(request.POST)
-#         if form.is_valid():
-#             form = MarkBooks(request.POST, request.FILES, instance=user)
-#             form.save()
-#             return HttpResponseRedirect(reverse("my-books"))
-
-#     context = {"form": form}
-#     return render(request, "pages/markbooks.html", context)
+        query = self.request.GET.get("q")
+        if query:
+            book_list = Book.objects.filter(title__icontains=query)
+            print(query)
+            return book_list
 
 
 @login_required
 def mark_book(request):
     user = request.user
-    print(user)
-
     form = MarkBooks(request.POST)
-    print(form)
+
     if request.method == "POST":
         if form.is_valid():
             bookuser = form.save(commit=True)
@@ -140,46 +75,6 @@ def mark_book(request):
 
     context = {"form": form}
     return render(request, "pages/markbooks.html", context)
-
-
-# @login_required
-# class MarkBooksView(FormView):
-#     template_name = "pages/markbooks.html"
-#     form_class = MarkBooks
-#     success_url = reverse("my-books")
-
-#     def get_form(self, form_class):
-#         try:
-#             saved_books = BookInstance.objects.get(user=self.request.user)
-#             return form_class(instance=saved_books, **self.get_form_kwargs())
-#         except BookInstance.DoesNotExist:
-#             return form_class(**self.get_form_kwargs())
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         form.save()
-#         return super((MarkBooksView, self).form_valid(form))
-
-
-# @login_required
-# def mark_book(request,id):
-#     bookuser = get_object_or_404(BookInstance,pk = id)
-#     if bookuser is None:
-#         if request.method == "POST":
-#             # if BookInstance.objects.get(pk=pk) is None:
-#             postpk = request.POST.get("id", None)
-#             model, created = BookInstance.objects.get_or_create(pk=postpk)
-
-#             form = MarkBooks(request.POST, instance=model)
-#             if form.is_valid():
-#                 bookuser = form.save(commit=True)
-
-#             return HttpResponseRedirect(reverse("my-books"))
-#         else:
-#             form = MarkBooks()
-
-#     context = {"form": form}
-#     return render(request, "pages/markbooks.html", context)
 
 
 # #THIS WORKS
