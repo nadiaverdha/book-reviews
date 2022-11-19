@@ -17,9 +17,7 @@ def profile(request):
     ]
     image = User.objects.values("image").filter(username=username)[0]["image"]
     no_books = BookInstance.objects.filter(user=request.user).count()
-    user_books = BookInstance.objects.filter(user=request.user)
-
-    shelf = BookInstance.objects.filter(user=request.user).all()
+    user_books = BookInstance.objects.filter(user=request.user).distinct()
     user_reviews = Reviews.objects.filter(user=request.user)
 
     context = {
@@ -28,7 +26,6 @@ def profile(request):
         "date": date,
         "image": image,
         "no_books": no_books,
-        "shelf": shelf,
         "image": image,
         "user_reviews": user_reviews,
         "user_books": user_books,

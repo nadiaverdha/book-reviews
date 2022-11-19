@@ -83,6 +83,11 @@ class BookInstance(models.Model):
             ("can mark as want to read", "want to read"),
             ("can mark as currently reading", "currently reading"),
         )
+        constraints = [
+            models.UniqueConstraint(
+                fields=["book", "user"], name="uq_bookinstance_book_user"
+            )
+        ]
 
     def __str__(self):
         return f"({self.book.title})"

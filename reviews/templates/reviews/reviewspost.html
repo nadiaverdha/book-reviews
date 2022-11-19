@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{%load static%}
+
+{% block content %} 
+<!-- <form method = "post">
+  {%csrf_token%}
+ 
+  Book{{form.book}}
+  Title{{form.title}}
+  Your review{{form.content}}
+  <input type="submit"> 
+
+</form> -->
+
+
+<h4> Pick a book and write your review. Let fellow book readers know what you think</h4>
+<div class="row mb-2">
+  <form method = "post">
+    {%csrf_token%}
+  <div class="col-md-8">
+    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <strong class="d-inline-block mb-2">Pick the book{{form.book}}</strong>
+        __________________________________________  
+        <h3 class="mb-0">
+          <!-- <input name = "q" class="form-control me-2" type="text" placeholder={{form.title}} aria-label={{form.title}}> -->
+          <h6> Your review title </h6>
+          <a class="text-dark">{{form.title}}</a>
+          __________________________________________   
+        <div class="mb-1 text-muted">{{form.content}}</div>
+        <input type="submit"> 
+  </div>
+  </form>
+</div>
+</div>
+{% endblock %}
