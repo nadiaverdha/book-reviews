@@ -4,18 +4,17 @@
 
 {% block content %}
 
- <h2> Form</h2>
- {%for book in form.book%}
+ <h2> Find your next favorite book</h2>
+
 <form method = "post">
   {%csrf_token%}
-  {{book}}
-
+  {{form.book}}
   {{form.status}}
   <input type="submit">
 
 
 </form>
-{%endfor%}
+
 {% endblock %}
 
    

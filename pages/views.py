@@ -70,8 +70,9 @@ def mark_book(request):
         if form.is_valid():
             bookuser = form.save(commit=True)
             bookuser.user = request.user
+            bookuser = form.save(commit=True)
 
-        return HttpResponseRedirect(reverse("my-books"))
+        return HttpResponseRedirect(reverse("profile"))
     else:
         form = MarkBooks()
 
