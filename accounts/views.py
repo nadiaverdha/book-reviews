@@ -17,8 +17,11 @@ def profile(request):
     ]
     image = User.objects.values("image").filter(username=username)[0]["image"]
     no_books = BookInstance.objects.filter(user=request.user).count()
+    user_books = BookInstance.objects.filter(user=request.user)
+
     shelf = BookInstance.objects.filter(user=request.user).all()
     user_reviews = Reviews.objects.filter(user=request.user)
+
     context = {
         "username": username,
         "email": email,
@@ -28,5 +31,6 @@ def profile(request):
         "shelf": shelf,
         "image": image,
         "user_reviews": user_reviews,
+        "user_books": user_books,
     }
     return render(request, "accounts/profile.html", context=context)

@@ -2,7 +2,70 @@
 {%load static%}
 {% block content %}
 
-    {{book_list}}
+<style>
+  html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+  .w3-card {
+    background-color: #A3BCB6;
+  }
+  .w3-opacity{
+  
+  text-align: center;
+  
+  }
+
+  .jumbotron {
+background-color: #A3BCB6;
+  }
+
+  .row{
+    color:black;
+  }
+  </style>
+  <body>
+    <div class="container">
+
+      <div class="jumbotron p-3 p-md-5 text-white rounded">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 text-dark">It is story time!</h1>
+          <p class="lead my-3 text-dark">Find your next favority story...</p>
+              </div>
+      </div>
+<br>
+<br>
+  
+
+<div class="row mb-2">
+  {% for book in book_list%}
+  <div class="col-md-6">
+    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <strong class="d-inline-block mb-2">{{book.title}}</strong>
+        <h3 class="mb-0">
+          <a class="text-dark">{{book.author}}</a>
+        </h3>
+        <div class="mb-1 text-muted">{{book.release_date}}</div>
+        <a href="#">Start reading...</a>
+      </div>
+      <img src="{{book.cover}}" alt="book cover">
+    </div>
+  </div>
+  {% endfor%}
+  
+</div>
+</div>
+
+
+       
+  
+
+    
+   
+
+    
+         
+
+
+
 {% endblock %}
 
 

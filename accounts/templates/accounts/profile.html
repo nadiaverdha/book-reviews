@@ -6,6 +6,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 .w3-card {
   background-color: #A3BCB6;
 }
+.w3-opacity{
+
+text-align: center;
+
+}
 
 
 </style>
@@ -24,7 +29,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
          <hr>
          <p><i class="fa-solid fa-user"></i> {{username}}</p>
          <p><i class="fa-solid fa-calendar"></i> {{date}}</p>
-         <p><i class="fa-solid fa-book"></i></i> {{no_books}}</p>
+         <p><i class="fa-solid fa-book-open-reader"></i></i> {{no_books}}</p>
         </div>
       </div>
       <br>
@@ -33,27 +38,53 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Interests --> 
       <div class="w3-card w3-round">
         <div class="w3-container">
-          <p><strong>Favorite genres</strong></p>
+          <p><strong> My books</strong></p>
           <p>
-              here gonna put genres they read
+            {% for book in user_books %}
+             {{book}}
           </p>
+          {% endfor %}
         </div>
       </div>
       <br>
     
+    <!-- Interests --> 
+    <div class="w3-card w3-round">
+      <div class="w3-container">
+        <p><strong>Favorite genres</strong></p>
+        <p>
+         
+        </p>
+      </div>
+    </div>
+    <br>
     
     <!-- End Left Column -->
     </div>
     
     <!-- Middle Column -->
 
-    <h4><strong>  My reviews </strong></h4>
+   
     {% if user_reviews %}
+
     <div class="w3-col m7">
+
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity"><strong>My Reviews </strong></h6>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {% for review in user_reviews %}
       <div class="w3-container w3-card w3-round w3-margin"><br>
+        <h4> <i class="fa-solid fa-book"></i> {{review.book}} </h4>
         <hr>
-        <h4> {{review.book}} - {{review.title}}</h4>
+          {{review.title}}
           <hr class="w3-clear">
           <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-half">

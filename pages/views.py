@@ -13,10 +13,9 @@ from django.views.generic import TemplateView, ListView
 
 
 def home(request):
+
     book_list = Book.objects.all()
     num_books = Book.objects.all().count()
-    inst = BookInstance.objects.all()
-    books = Book.objects.all()
     num_authors = Author.objects.all().count()
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
@@ -26,6 +25,8 @@ def home(request):
         "num_authors": num_authors,
         "num_visits": num_visits,
         "book_list": book_list,
+        "col1": book_list[:5],
+        "col2": book_list[5:],
     }
 
     return render(request, "pages/home.html", context=context)
@@ -68,6 +69,7 @@ def mark_book(request):
     if request.method == "POST":
         if form.is_valid():
             bookuser = form.save(commit=True)
+            bookuser.user = request.user
 
         return HttpResponseRedirect(reverse("my-books"))
     else:

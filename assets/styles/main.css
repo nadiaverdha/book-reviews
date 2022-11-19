@@ -20,6 +20,7 @@ a {
 }
 
 
+
 /*======================================================
                           Navbar
   ======================================================*/
@@ -32,7 +33,7 @@ a {
   line-height: 60px;
   width: 100vw;
   z-index: 10;
-  border-bottom-color: #002B5B;
+  border-bottom-color: black;
   border-bottom: solid;
 }
 
@@ -58,12 +59,12 @@ a {
   margin-left: 28px;
   font-size: 1.5em;
   height: 60px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 } @media(max-width: 768px) {
-  /*  .logo {
+   .logo {
        margin-left: 5px; 
-    }*/
+    }
   }
 
 #navbar ul {
@@ -106,7 +107,7 @@ a {
 
 #navbar li a:hover {
   /* border-bottom: 1px solid rgb(28, 121, 184); */
-  color: #002B5B;
+  color: blue;
   transition: all 1s ease;
   -webkit-transition: all 1s ease;
 }
@@ -146,14 +147,14 @@ a {
 
 
 
-  #footer {
+.container-footer {
     position: fixed;
     padding: 10px 10px 0px 10px;
     bottom: 0;
     width: 100%;
     background-color: #A3BCB6;
     text-align: center;
-    border-bottom-color: #002B5B;
+    border-bottom-color: black;
     border-top: solid;}
     /* border-bottom:solid;
     border-top: solid;}   */

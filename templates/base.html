@@ -41,7 +41,6 @@
           </form></li>
           <li><a href="{% url 'home' %}">Home</a></li>
           {% if user.is_authenticated %}
-          <li><a href="">About</a></li>
      <li><a href="{% url 'profile' %}">Profile</a></li>
      <li><a href="{% url 'auth_logout' %}">Log Out</a></li>
      {% else %}
@@ -59,9 +58,9 @@
     {% block content %} {% endblock content %}
       </div>
 
-    <div class = "contain" id="footer">
+  <div class = "container-footer" id="footer">
       <span class="text-muted">Copyright &copy; 2022 - StoryTime <i class="fa-solid fa-book-open"></i></span>
-    </div> 
+  </div> 
 
 
 
